@@ -1,6 +1,5 @@
 package com.solidstategroup.candidate.question2;
 
-import java.util.List;
 
 /**
  * Class to calculate the average value of the nodes in a tree
@@ -44,23 +43,16 @@ public class TreeAverageValue {
        total += currentNode.getValue();
        int childIndex = 0;
 
-        //Start off by getting the next node to process from current node's children
-        // i.e. the 1st child and 1st child's children
-        List<Node> nextNodeChildren = currentNode.getChildren().get(childIndex).getChildren();
-        int nextNodeValue = currentNode.getChildren().get(childIndex).getValue();
-        Node nextNode = new NodeImpl(nextNodeValue, nextNodeChildren);
+        Node nextNode =  currentNode.getChildren().get(childIndex);
 
         while (childIndex < currentNode.getChildren().size()) {
-
             // Recursively calculate the total value of the nodes
             total = calcTotal(nextNode, total);
             childIndex++;
 
             //Now carry on and Progress through the current node's children to get next node to process
             if (childIndex < currentNode.getChildren().size()) {
-                nextNodeChildren = currentNode.getChildren().get(childIndex).getChildren();
-                nextNodeValue = currentNode.getChildren().get(childIndex).getValue();
-                nextNode = new NodeImpl(nextNodeValue, nextNodeChildren);
+               nextNode =  currentNode.getChildren().get(childIndex);
             }
         }
         return total;

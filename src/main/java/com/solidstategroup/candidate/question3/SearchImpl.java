@@ -30,7 +30,7 @@ public class SearchImpl implements Search {
 
     List<String> database = searchDataSource.getDatabase();
     if (database == null)
-      throw new  IllegalArgumentException("database cannot be null");
+      throw new  IllegalStateException("database cannot be null");
     if (!database.isEmpty()){
       for (String item : database ){
         if (item.toLowerCase().trim().contains(query.trim().toLowerCase()))
